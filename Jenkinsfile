@@ -1,13 +1,15 @@
-node {
-    stage('scm') {
-        git 'https://github.com/GitPracticeRepo/multibranchspc.git'
-    }
-    stage('build') {
-        3.times {
-            println "started build ${it}"
-            sh 'mvn clean package'
-            println "completed build ${it}"
+pipeline{
+    agent any
+    stages {
+        stage('SCM') {
+            git 'https://github.com/GitPracticeRepo/multibranchspc.git'
         }
-        
+
+        stage('Build and postbuild'){
+            sh 'mvn package'
+            archiveArtifacts 'target/*.jar'
+            junit 'target/surefire-reports/*.xml'
+        }
     }
 }
+

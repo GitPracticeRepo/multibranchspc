@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    triggers {
+        pollSCM('* * * * *')
+    }
     stages {
         stage('scm Build and postbuild'){
             steps {
@@ -7,7 +10,7 @@ pipeline{
                 sh 'mvn package'
                 archiveArtifacts 'target/*.jar'
                 junit 'target/surefire-reports/*.xml'
-                
+
             }
             
         }

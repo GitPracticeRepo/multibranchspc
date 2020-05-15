@@ -3,6 +3,11 @@ node {
         git 'https://github.com/GitPracticeRepo/multibranchspc.git'
     }
     stage('build') {
-        sh 'mvn clean package'
+        3.times {
+            println "started build ${it}"
+            sh 'mvn clean package'
+            println "completed build ${it}"
+        }
+        
     }
 }

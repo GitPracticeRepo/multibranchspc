@@ -3,7 +3,7 @@ pipeline{
     triggers {
         pollSCM('* * * * *')
     }
-    paramters{
+    parameters {
         string(name: 'MVNGOAL', defaultValue: 'package')
 
         string(name: 'ARTIFACTPATH', defaultValue: 'target/*.jar')

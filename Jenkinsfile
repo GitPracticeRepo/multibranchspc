@@ -4,7 +4,7 @@ pipeline{
         pollSCM('* * * * *')
     }
     stages {
-        stage('scm Build ){
+        stage('scm Build' ){
             steps {
                 git 'https://github.com/GitPracticeRepo/multibranchspc.git'
                 sh 'mvn package'

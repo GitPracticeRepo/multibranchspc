@@ -13,10 +13,11 @@ pipeline{
 
             }
         }
-        input {
-            message "Do you want Test Results?"
-        }
+        
         stage('test results'){
+            input {
+                message "Do you want Test Results?"
+            }
             steps{
                 junit 'target/surefire-reports/*.xml'
             }

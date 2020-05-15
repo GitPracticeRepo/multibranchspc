@@ -2,6 +2,7 @@ pipeline{
     agent any
     triggers {
         pollSCM('* * * * *')
+        upstream(upstreamProjects: 'kickstart', threshold: hudson.model.Result.SUCCESS)
     }
     options{
         disableConcurrentBuilds()

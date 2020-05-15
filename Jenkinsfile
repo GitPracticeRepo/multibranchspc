@@ -3,12 +3,17 @@ pipeline{
     triggers {
         pollSCM('* * * * *')
     }
+    paramters{
+        string(name: 'MVNGOAL', defaultValue: 'package')
+
+        string(name: 'ARTIFACTPATH', defaultValue: 'target/*.jar')
+    }
     stages {
         stage('scm Build' ){
             steps {
                 git 'https://github.com/GitPracticeRepo/multibranchspc.git'
-                sh 'mvn package'
-                archiveArtifacts 'target/*.jar'
+                sh "mvn ${params.MVNGOAL}"
+                archiveArtifacts "${params.ARTIFACTPATH}"
                 
 
             }

@@ -3,6 +3,9 @@ pipeline{
     triggers {
         pollSCM('* * * * *')
     }
+    options{
+        disableConcurrentBuilds()
+    }
     parameters {
         string(name: 'MVNGOAL', defaultValue: 'package')
 
